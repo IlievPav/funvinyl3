@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+<main>
+    <div class="container">
+        <div class="row text-white">
+            <!--   th:action="@{/admin/add}"-->
+            <div class="col">
+                <form
+                        th:action="@{/admin/change}"
+
+
+                        class="form-group d-flex align-content-center justify-content-center mb-3 my-3">
+                    <div>
+                        <h2 class="text-warning fs-5" value="">User</h2>
+                        <li th:each="u : ${allUsers}"
+                            th:text="${u.username}" th:value="${u.username}"
+                            >
+                          <!--  th:text="${u.getRoles().get(0)}" th:value="${u.getRoles().get(0)}"-->
+                        </li>
+
+
+
+
+                        <!--  <div class="col-auto my-1">
+                              <input th:field="*{category}"
+                                     th:errorclass="is-invalid"
+                                     name="category"
+                                     type="text" class="form-control"
+                                     aria-describedby="categoryHelpInline" required minlength="2">
+                              <small id="categoryError"
+                                     class="invalid-feedback text-light form-text bg-danger rounded">Category length must
+                                  be
+                                  more than 2 characters</small>
+                          </div>
+                          <div class="d-flex my-2  mx-auto">
+                              <button class="btn btn-success btn-block " type="submit">Add Category</button>
+                          </div>-->
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</main>
+<footer th:replace="fragments/commons :: footer"></footer>
+</body>
+
+</html>

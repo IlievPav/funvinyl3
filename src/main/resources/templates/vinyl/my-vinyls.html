@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+<main>
+    <hr class="border-bottom w-auto">
+    <div class="container-fluid bg-dark" >
+        <div class='row  d-flex  justify-content-around'>
+            <div th:each="v : ${vinyls}" th:object="${v}" class="card col-md-2  m-2 d-flex flex-column"
+                 style="width: 18rem;">
+                <!-- <a th:href="@{/vinyls/detail/{id}(id = *{id})}">-->
+                <div>
+                    <img th:src="*{imageUrl}" class="card-img-top my-1" alt="..." style="box-sizing: border-box">
+                </div>
+                <div class="card-body">
+                    <h5 th:text="|Artist: *{artist}|" class="text-dark fw-bold">artist</h5>
+                    <h5 th:text="|Title:  *{title}|" class="text-dark fw-bold">title</h5>
+                    <h5 th:text="*{categories}" class="text-dark ">category</h5>
+                    <h6 th:text="|price: *{price}lv.|" class="text-dark  ">price</h6>
+                </div>
+                <div class="btn-group  justify-content-center my-1">
+                    <div th:if="*{owner}" >
+                        <a th:href="@{/vinyls/detail/{id}(id = *{id})}"
+                           class="btn btn-warning active mx-1" aria-current="page">Details</a>
+                    </div>
+                    <div th:unless="*{owner}" >
+                        <a th:href="@{/vinyls/detail/{id}(id = *{id})}"
+                           class="btn btn-warning active mx-1" aria-current="page">Details</a>
+                        <a href="#" class="btn btn-success active  mx-1 px-4"
+                           aria-current="page">Like</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="border-bottom w-auto">
+</main>
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+</html>

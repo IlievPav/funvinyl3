@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head" ></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation" ></header>
+            <main class="justify-content-center bg-dark" >
+            <div class="container d-flex justify-content-center bg-dark text-dark ">
+                <div class="row g-3 m-1 align-items-center">
+                    <img th:src="@{/image/homeVinyl.jpg}">
+                </div>
+                <div class="col-sm-5 my-3">
+                <p class="text-light">Some quick example text to build on the card title and make up the bulk of
+                    the card's content. Some quick example text to build on the card title and make up the bulk of</p>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/commons :: footer"></footer>
+</body>
+
+</html>

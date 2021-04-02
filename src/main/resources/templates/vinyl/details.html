@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+<main>
+    <div class="container-fluid bg-dark">
+        <div class="row   d-flex justify-content-around">
+            <div th:object="${vinyl}" class="card col-md-2 d-flex flex-column" style="width: 38rem;">
+
+                        <img th:src="*{imageUrl}" class="card-img-top my-1" alt="..." style="box-sizing: border-box">
+
+                    <div class="card-body">
+                        <h5 th:text="|Artist: *{artist}|" class="card-title fw-bold">artist</h5>
+                        <h5 th:text="|Title:  *{title}|" class="card-title fw-bold">title</h5>
+                        <h5 th:text="*{categories}" class="card-title">category</h5>
+                        <h6 th:text="|price: *{price}lv.|" class="card-title">price</h6>
+                        <p th:text="|description: *{description}|" class="card-text fst-italic">description</p>
+
+                        <div th:if="${owner}" class="btn-group my-1  ">
+                           <a th:href="@{/vinyls/edit/{id}(id = *{id})}" class="OWNER btn btn-warning active mx-1" aria-current="page">edit</a>
+                            <a th:href="@{/vinyls/delete/{id}(id = *{id})}"  class=" btn btn-danger active mx-1" aria-current="page">delete</a>
+                            <a href="#" class="btn btn-primary active mx-1" aria-current="page">comments</a>
+                        </div><!---->
+                        <div th:unless="${owner}" class="btn-group my-1">
+                            <a th:href="@{/vinyls/favorites/{id}(id = *{id})}"
+                               class="btn btn-success active  mx-1 px-4" aria-current="page">Like</a>
+                            <a href="#" class="btn btn-primary active mx-1" aria-current="page">comments</a>
+                        </div>
+                        <div class="row">
+                            <div th:text="|user: *{username}|" class="col"> user:</div>
+                            <div th:text="|contact: *{contact}|" class="col"> contact:</div>
+                        </div>
+                  <!--      <div class="d-flex justify-content-center">
+                            <div class="my-index-div w-100">
+                                <iframe class="w-100 h-100" src="https://www.youtube.com/embed/Q93n3dvaaTI?rel=0"
+                                        title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                        </div>-->
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+</html>

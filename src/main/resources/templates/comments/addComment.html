@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+    <main>
+        <div class="container-fluid bg-dark">
+            <div class='row   d-flex justify-content-around'>
+                <div class="card col-md-5  m-2 d-flex flex-column" style="width: 30rem;">
+
+                    <div class="card-body">
+                        <h5 class="card-title border-bottom ">artist - title</h5>
+
+                    </div>
+                    <div class="form-floating">
+                        
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Comments</label>
+                          </div>
+                        
+                    </div>
+                    <div class="btn-group m-2" style="width: 3rem;">
+                        <a href="/comments.html" class="btn btn-primary active" aria-current="page">submit</a>
+                      
+                      </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+</html>

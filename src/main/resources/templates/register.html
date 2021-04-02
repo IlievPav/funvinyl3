@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+    <main  class="justify-content-center bg-dark">
+        <div class="container d-flex justify-content-center bg-dark text-dark ">
+            <div class="row g-3 m-1 align-items-center">
+                <img th:src="@{/image/homeVinyl.jpg}">
+            </div>
+
+            <div class="col-sm-5 my-1">
+                <form th:action="@{/users/register}"
+                      th:object="${userRegisterBindingModel}"
+                      method="POST">
+                    <!-- Username -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputUsername" class="col-form-label text-light">Username</label>
+                        </div>
+                        <div class="col-auto">
+                            <input name="username"
+                                   th:field="*{username}"
+                                   th:errorclass="is-invalid"
+                                   type="text" id="inputUsername" class="form-control"
+                                aria-describedby="usernameHelpInline" required minlength="3">
+                            <small id="usernameError"
+                                class="invalid-feedback text-light form-text bg-danger rounded">Username length must be
+                                more than 3 characters</small>
+                            <small  th:if="${userExistsError}"
+                                    id="usernameUniqueError" class="text-light form-text bg-danger rounded">Username is
+                                already occupied</small>
+
+                        </div>
+                    </div>
+                    <!-- EO: Username -->
+
+                    <!-- Full name -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputFullName" class="col-form-label text-light">Full Name</label>
+                        </div>
+                        <div class="col-auto">
+                            <input name="fullName"
+                                   th:field="*{fullName}"
+                                   th:errorclass="is-invalid"
+                                   type="text" id="inputFullName" class="form-control"
+                                aria-describedby="fullNameHelpInline" required minlength="3">
+                            <small id="fullNameError"
+                                class="invalid-feedback text-light form-text bg-danger rounded">Full name length must be
+                                more than 3 characters</small>
+                        </div>
+                    </div>
+                    <!-- EO: Full name -->
+
+
+                    <!-- Email -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputEmail" class="col-form-label text-light">Email</label>
+                        </div>
+                        <div class="col-auto">
+                            <input name="email"
+                                   th:field="*{email}"
+                                   th:errorclass="is-invalid"
+                                   type="email"
+                                   id="inputEmail"
+                                   class="form-control"
+                                   aria-describedby="emailHelpInline" required="required">
+                            <small id="emailError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
+                            <small  th:if="${emailExistsError}"
+                                    id="emailUniqueError" class="text-light form-text bg-danger rounded">Email has
+                                already been taken</small>
+                        </div>
+                    </div>
+                    <!-- EO: Email -->
+
+                   
+                    <!-- Password -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputPassword" class="col-form-label text-light">Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input name="password"
+                                   th:errorclass="is-invalid"
+                                   type="password" id="inputPassword" class="form-control"
+                                aria-describedby="passwordHelpInline" required minlength="5" maxlength="30">
+                            <small id="passwordError" class="invalid-feedback text-light form-text bg-danger rounded">
+                                Password length must be between 5 and 30 characters and passwords should match.
+                            </small>
+                        </div>
+                    </div>
+                    <!-- EO: Password -->
+
+                    <!-- Password confirm -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputConfirmPassword" class="col-form-label text-light">Confirm Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input name="confirmPassword"
+                                   th:errorclass="is-invalid"
+                                   type="password" id="inputConfirmPassword" class="form-control"
+                                aria-describedby="confirmPasswordHelpInline" required="required" >
+                            <small id="confirmPasswordError"
+                                class="invalid-feedback text-light form-text bg-danger rounded">
+                                Password length must be between 5 and 30 characters and passwords should match.
+                            </small>
+                        </div>
+                    </div>
+                    <!-- EO: Password confirm -->
+
+                    <div class="d-flex  mt-4">
+                        <button class="btn btn-primary btn-block w-50" type="submit">Register</button>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+        </div>
+    </main>
+    <footer th:replace="fragments/commons :: footer"></footer>
+</body>
+
+</html>

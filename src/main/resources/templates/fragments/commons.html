@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+<header th:fragment="navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid me-auto">
+            <a class="navbar-brand  bg-light " th:href="@{/home}">
+                <img th:src="@{/image/vinyl-record.svg}"
+                     alt="" width="30" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <ul sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-nav mx-1 mb-2 mb-lg-0">
+                <a class="btn btn-warning" th:href="@{/admin/add}" role="button">Categories</a>
+            </ul>
+            <ul sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-nav mx-1 mb-2 mb-lg-0">
+                <a class="btn btn-warning" th:href="@{/admin/change}" role="button">Users</a>
+            </ul>
+
+            <ul sec:authorize="isAuthenticated()" class="navbar-nav mx-1 mb-2 mb-lg-0">
+                <a class="btn btn-success" th:href="@{/vinyls/all}" role="button">All vinyls</a>
+
+            </ul>
+            <ul sec:authorize="isAuthenticated()" class="navbar-nav  mb-2 mb-lg-0">
+
+                <h5 th:text="| Welcome, ${#request.userPrincipal.name}! |"
+                    class="align-content-center text-white mx-5 "></h5>
+            </ul>
+            <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
+                <ul sec:authorize="!isAuthenticated()" class="navbar-nav  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           th:href="@{/users/register}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           th:href="@{/users/login}">Login</a>
+                    </li>
+                </ul>
+                <ul sec:authorize="isAuthenticated()" class="navbar-nav   mb-2 mb-lg-0">
+
+                    <li class="nav-item active">
+                        <a class="nav-link active" aria-current="page" th:href="@{/vinyls/add}">Add vinyl</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/vinyls/my}">My vinyls</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/vinyls/favorites}">Favorites</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <form th:action="@{/logout}" method="POST">
+                            <button type="submit" class="btn text-white active">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-dark ">
+    <div class="container">
+        <ul class="navbar-nav  mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active fs-3 " aria-current="page" th:href="@{/about}">about</a>
+            </li>
+            <li class="nav-item">
+                <p class="text-white fs-6 ">PEACE AND LOVE</p>
+            </li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>

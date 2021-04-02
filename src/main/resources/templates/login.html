@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body style="background-color: #1a1e21">
+<header th:replace="fragments/commons :: navigation"></header>
+    <main  class=" justify-content-center align-items-center bg-dark">
+        <div class="container d-flex justify-content-center bg-dark text-dark ">
+            <div class="row g-3 m-1 align-items-center">
+                <img th:src="@{/image/homeVinyl.jpg}">
+            </div>
+
+            <div class="col-sm-5 my-5">
+                <div th:if="${bad_credentials}" class="alert alert-danger" role="alert">
+                    This username and password combination does not exist.
+                </div>
+                <form th:action="@{/users/login}" method="POST">
+                    <!--User name-->
+                    <div>
+                        <div class="col-auto ">
+                            <label for="inputUsername" class="col-form-label text-light">Username</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" name="username" th:value="${username}" id="inputUsername"
+                                class="form-control" aria-describedby="usernameHelpInline">
+                        </div>
+                    </div>
+                    <!--EO: User name-->
+
+                    <!-- Password -->
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputPassword" class="col-form-label text-light">Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" name="password" id="inputPassword" class="form-control"
+                                aria-describedby="passwordHelpInline">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2 ">
+                        <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
+                    </div>
+                    <!-- EO: Password -->
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/commons :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+    <main>
+        <div class="container-fluid  justify-content-center align-items-center bg-dark">
+
+                <form class="col w-25 mx-auto "
+                      th:object="${addVinylBindingModel}"
+                      th:action="@{/vinyls/add}"
+                      th:method="POST" enctype="multipart/form-data">
+
+                    <div class="col-auto">
+                        <label for="inputArtist" class="col-form-label text-light">artist</label>
+                    </div>
+                    <div class="col-auto">
+                        <input name="artist"
+                               th:value="*{artist}"
+                               th:errorclass="is-invalid"
+                               type="text" id="inputArtist" class="form-control"
+                               aria-describedby="artistHelpInline">
+                        <small th:if="${artistError}" id="artistError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Username length must be
+                            more than 3 characters</small>
+                    </div>
+
+
+
+             <!--   <div  class="col-auto input-group mb-3"  >
+                    <span class="input-group-text" id="artist">Artist</span>
+                    <input name="artist" th:field="*{artist}"  th:errorclass="is-invalid" type="text"
+                        aria-describedby="artistHelpInline">
+                    <small th:each="e : ${#fields.errors('artist')}" th:text="${e}" class="text-danger">Incorrect username!</small>
+                </div>-->
+                   <!-- <small id="artistError"
+                           class="invalid-feedback text-light form-text bg-danger rounded">Username length must be
+                        more than 3 characters</small>-->
+                <div class="input-group mb-3 " >
+                    <span class="input-group-text" id="title">Title</span>
+                    <input name = "title" th:field="*{title}"  th:errorclass="bg-danger" type="text" class="form-control"
+                        aria-describedby="titleHelpInline">
+                    <small  th:if="${#fields.hasErrors('title')}" th:errors = "*{title}" class="text-danger">Incorrect username!</small>
+                </div>
+                <div class="input-group mb-3" >
+                    <span class="input-group-text" id="price">price</span>
+                    <input th:field="*{price}" type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+
+                    <!--RABOTIIII-->
+                    <div class="form-group d-flex align-content-center justify-content-center mb-3" >
+                      <select th:field="${category.category}" th:errprclass="bg-danger" class="browser-default custom-select" id="category" name="category">
+                          <option value="">Select category</option>
+                          <option th:each="c : ${allCategories}"
+                                  th:text="${c.getCategory()}" th:value="${c.getCategory()}"
+                                  th:selected="${c.getCategory()} == ${category.category}"
+                          >Category</option>
+                      </select>
+                  </div>
+                    <!--RABOTIIII-->
+
+
+
+                    <div class="form-group mb-3">
+                        <label for="add-title-image" class="font-weight-bold">Picture</label>
+                        <input type="file" class="form-control-file text-white" id="add-title-image" ]
+                               name="img" required="required" th:field="*{imageUrl}" >
+                    </div>
+
+
+                      <!--  <div class="row mb-3">
+                        <img th:src="*{imageUrl}" alt="Student picture" width="300px">
+                    </div>-->
+
+            <!--    <div class="input-group mb-3" >
+                    <span class="input-group-text" id="imageUrl">image</span>
+                    <input th:field="*{imageUrl}" type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>-->
+
+                <div class="input-group mb-3" style="height: 5rem;">
+                    <span class="input-group-text" id="description">description</span>
+                    <input th:field="*{description}"  type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                    <div class="d-flex   mx-auto">
+                        <button class="btn btn-success btn-block w-50" type="submit">Add Vinyl</button>
+                    </div>
+                <!--<div class="btn-group mb-3  mx-auto ">
+                    <a class="btn btn-primary active" aria-current="page" >submit</a>
+                </div>-->
+                </form>
+
+        </div>
+    </main>
+    <footer th:replace="fragments/commons :: footer"></footer>
+<!--<script>
+    fetch('/categories/fetch')
+        .then((response) => response.json())
+        .then((json) => {
+            json.forEach((category) => $('#add-product-categories').append(`<option value="${category.id}">${category.name}</option>`));
+        })
+        .catch((err) => console.log(err));
+</script>-->
+</body>
+
+</html>
